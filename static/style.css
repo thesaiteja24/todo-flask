@@ -1,0 +1,129 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: monospace;
+  font-size: small;
+}
+
+#my-container {
+  height: 100vh;
+  background-color: beige;
+  display: flex;
+}
+
+.sidebar,
+.main-content {
+  padding: 1rem;
+  background-color: white;
+  margin: 0.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px black;
+}
+
+.sidebar {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  width: 80%;
+}
+
+.display-none {
+  display: none;
+}
+
+.todo-card {
+  margin: 0.5rem 0;
+  padding: 10px;
+  color: black;
+  border-radius: 4px;
+  border: 1px solid black;
+}
+
+.todo-card:hover {
+  box-shadow: 0 2px 10px black;
+}
+
+.profile-card {
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-radius: 10px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+}
+
+.profile-pic {
+  border-radius: 50px;
+  width: 100px;
+}
+
+/* Login section */
+
+#login-container {
+  height: 100vh;
+  background-color: beige;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: first baseline;
+  justify-content: center;
+}
+.card {
+  padding: 1rem;
+  background-color: white;
+  margin: 4rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px black;
+  width: 400px;
+  /* height: 200px; */
+  height: max-content;
+}
+
+/* Create Listing */
+#creatlisting-body {
+  height: 100vh;
+  background-color: beige;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: first baseline;
+  justify-content: center;
+}
+
+.createlisting-card {
+  padding: 1rem;
+  background-color: white;
+  margin-top: 4rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px black;
+  width: 500px;
+  /* height: 200px; */
+  height: max-content;
+}
+
+/* completed Todo Section */
+.complete_todo_body {
+  margin: 0;
+  height: 100vh;
+  background-color: beige;
+}
+.completed-todo-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.complete_todo_title {
+  display: inline;
+}
+
+/* Edit page */
+#btn-group {
+  display: flex;
+  justify-content: end;
+}
+
+#edit-todo-body {
+  height: 100vh;
+  background-color: beige;
+}

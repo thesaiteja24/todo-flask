@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body class="home">
+    <div id="my-container">
+      <!-- Sidebar Section -->
+      <div class="sidebar p-2">
+        <div class="profile-card">
+          <img
+            src="{{ url_for('static', filename='assets/profile.png') }}"
+            alt="Profile Picture"
+            class="profile-pic"
+          />
+          <h6>{{ username }}</h6>
+          <div class="logout m-4">
+            <form action="{{ url_for('logout') }}" method="get">
+              <button
+                class="btn btn-outline-dark form-control my-2"
+                type="submit"
+              >
+                Logout
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="sub-title">
+          <h4>Todo:</h4>
+        </div>
+        <div class="show-todo">
+          <button class="btn btn-outline-dark form-control my-2">
+            Show Todo
+          </button>
+        </div>
+        <div class="create-todo">
+          <form action="{{ url_for('createListing') }}" method="get">
+            <button class="btn btn-outline-dark form-control my-2 create-todo">
+              Create Todo
+            </button>
+          </form>
+        </div>
+        <div class="sub-title">
+          <h4 style="display: inline">Completed</h4>
+          <h1 style="display: inline">&#10004;</h1>
+        </div>
+        <div class="todo-history">
+          <form action="{{ url_for('view_history') }}" method="get">
+            <button class="btn btn-outline-dark form-control my-2">
+              View History
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Main Content Section -->
+      <div class="main-content p-2">
+        <!-- Toggle Buttons for Date Filters -->
+        <div
+          class="btn-group m-1"
+          role="group"
+          aria-label="Basic radio toggle button group"
+        >
+          <input
+            type="radio"
+            class="btn-check"
+            name="btnradio"
+            id="btnradio1"
+            autocomplete="off"
+            checked
+          />
+          <label class="btn btn-outline-dark" for="btnradio1">Today</label>
+
+          <input
+            type="radio"
+            class="btn-check"
+            name="btnradio"
+            id="btnradio2"
+            autocomplete="off"
+          />
+          <label class="btn btn-outline-dark" for="btnradio2">This Week</label>
+
+          <input
+            type="radio"
+            class="btn-check"
+            name="btnradio"
+            id="btnradio3"
+            autocomplete="off"
+          />
+          <label class="btn btn-outline-dark" for="btnradio3">This Month</label>
+        </div>
+
+        <!-- Display Area for Todo Items -->
+        <div class="btns-result m-1">
+          <div class="display-today">
+            <!-- Today Task Cards -->
+            {% for todo in todos_today %}
+            <div class="todo-card">
+              <input
+                type="checkbox"
+                onchange="completeTodo('{{ todo._id }}')"
+              />
+              <h4 class="title">{{ todo.title }}</h4>
+              <p class="description">{{ todo.description }}</p>
+              <strong class="deadline">{{ todo.deadline }}</strong>
+              <div id="btn-group">
+                <form
+                  action="{{ url_for('edit_todo_form', todo_id=todo['_id']) }}"
+                  method="get"
+                  style="display: inline"
+                >
+                  <button type="submit" class="btn btn-dark mx-2">Edit</button>
+                </form>
+                <form
+                  action="{{ url_for('delete_todo', todo_id=todo['_id']) }}"
+                  method="POST"
+                  style="display: inline"
+                >
+                  <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+
+          <div class="display-week display-none">
+            <!-- This Week Task Cards -->
+            {% for todo in todos_this_week %}
+            <div class="todo-card">
+              <input
+                type="checkbox"
+                onchange="completeTodo('{{ todo._id }}')"
+              />
+              <h4 class="title">{{ todo.title }}</h4>
+              <p class="description">{{ todo.description }}</p>
+              <strong class="deadline">{{ todo.deadline }}</strong>
+              <div id="btn-group">
+                <form
+                  action="{{ url_for('edit_todo_form', todo_id=todo['_id']) }}"
+                  method="get"
+                  style="display: inline"
+                >
+                  <button type="submit" class="btn btn-dark mx-2">Edit</button>
+                </form>
+                <form
+                  action="{{ url_for('delete_todo', todo_id=todo['_id']) }}"
+                  method="POST"
+                  style="display: inline"
+                >
+                  <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+
+          <div class="display-month display-none">
+            <!-- This Month Task Cards -->
+            {% for todo in todos_this_month %}
+            <div class="todo-card">
+              <input
+                type="checkbox"
+                onchange="completeTodo('{{ todo._id }}')"
+              />
+              <h4 class="title">{{ todo.title }}</h4>
+              <p class="description">{{ todo.description }}</p>
+              <strong class="deadline">{{ todo.deadline }}</strong>
+              <div id="btn-group">
+                <form
+                  action="{{ url_for('edit_todo_form', todo_id=todo['_id']) }}"
+                  method="get"
+                  style="display: inline"
+                >
+                  <button type="submit" class="btn btn-dark mx-2">Edit</button>
+                </form>
+                <form
+                  action="{{ url_for('delete_todo', todo_id=todo['_id']) }}"
+                  method="POST"
+                  style="display: inline"
+                >
+                  <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>
