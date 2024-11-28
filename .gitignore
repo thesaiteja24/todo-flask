@@ -77,3 +77,5 @@ config.py
 # Ignore the pyvenv.cfg file
 pyvenv.cfg
 
+# Python site-packages directory
+lib/python3.11/site-packages/
