@@ -19,7 +19,7 @@
     <div class="main-content p-2" style="margin: 0 auto; margin-top: 2rem">
       <h2>Edit Todo</h2>
       <form
-        action="{{ url_for('update_todo', todo_id=todo['_id']) }}"
+        action="{{ url_for('todo_routes.update_todo', todo_id=todo['_id']) }}"
         method="post"
       >
         <div class="mb-3">

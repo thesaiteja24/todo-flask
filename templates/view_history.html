@@ -18,7 +18,7 @@
     <div class="main-content p-2" style="margin: 0 auto; margin-top: 2rem">
       <div class="completed-todo-title-container">
         <h2 class="complete_todo_title">Completed Todos</h2>
-        <a href="{{ url_for('home') }}" class="btn btn-outline-dark"
+        <a href="{{ url_for('todo_routes.home') }}" class="btn btn-outline-dark"
           >Back to Home</a
         >
       </div>
@@ -32,7 +32,7 @@
         </div>
         <div id="btn-group">
           <form
-            action="{{ url_for('delete_completed_todo', todo_id=todo['_id']) }}"
+            action="{{ url_for('todo_routes.delete_completed_todo', todo_id=todo['_id']) }}"
             method="POST"
             style="display: inline"
           >
